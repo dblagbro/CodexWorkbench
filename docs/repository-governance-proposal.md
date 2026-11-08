@@ -1,4 +1,6 @@
-# Repository governance proposal for owner approval
+# Repository governance proposal
+
+Owner approved this matrix, exact solo-owner protection payload and scanner/metadata-egress policies on 2026-11-08. Implementation and verification are tracked in [security and governance](security-and-governance.md). for owner approval
 
 Status: **candidate, not activated**. Prepared2026-11-08. No remote protection, visibility, access, review or release settings are changed by the proposal tool. The owner has approved public professional attribution using their own name/Gmail. That is not a secret finding and no historical identity rewrite is proposed. Credentials and unrelated private records remain excluded.
 

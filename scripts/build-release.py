@@ -63,8 +63,10 @@ def main():
         files[str(path.relative_to(ROOT))] = path.read_bytes()
     for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'unattended-and-context.md', 'shared-project-handoff.md', 'quality-and-delivery.md', 'agent-workflow-research.md', 'repository-governance-proposal.md', 'p1-test-plan.md', 'p1-results.md', 'native-recovery-compatibility.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
         files['docs/' + name] = (ROOT / 'docs' / name).read_bytes()
-    for name in ('repository-facts.example.json','codex-workbench-protection.proposed.json','security-tools.proposed.json'):
+    for name in ('repository-facts.example.json','codex-workbench-protection.proposed.json','security-tools.proposed.json','dependency-audit.json'):
         files['config/' + name] = (ROOT / 'config' / name).read_bytes()
+    for name in ('requirements-audit-310.txt', 'requirements-audit-312.txt', '.github/workflows/ci.yml', 'docs/security-and-governance.md'):
+        files[name] = (ROOT / name).read_bytes()
     files['LICENSE'] = (ROOT / 'LICENSE').read_bytes()
     files['requirements-claude.txt'] = (ROOT / 'requirements-claude.txt').read_bytes()
     files['README.md'] = ('# Codex Workbench ' + VERSION + '\n\n'
