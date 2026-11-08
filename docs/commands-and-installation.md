@@ -108,3 +108,7 @@ Reboot/power-loss restoration of previously open sessions is recorded in `backlo
 Sources: [native resume](https://learn.chatgpt.com/docs/cli/reference), [remote connections and handoff](https://learn.chatgpt.com/docs/remote-connections), [local memories](https://learn.chatgpt.com/docs/customization/memories), and [prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching).
 
 Workbench resume shortcuts pass the supported per-invocation setting `tui.resume_cwd="session"`, so a saved working directory is used without the home-versus-session prompt. This includes SSH resume on the owning host. Explicit `--cd` still takes precedence. Plain `codex resume` and global Codex configuration are unchanged. Reload `code-shell.bash` in an already-open terminal after installing this launcher update; no session-policy upgrade is needed for this launcher behavior. See [Codex resume documentation](https://learn.chatgpt.com/docs/developer-commands).
+
+### Already-open Bash tabs
+
+After first installing launcher auto-reload support, run `source ~/.local/share/codex-code/code-shell.bash` once in each already-open tab. Thereafter Workbench shortcuts reload their on-disk launcher definitions on every invocation. Session-policy upgrades update session instructions; they do not by themselves replace functions previously loaded into a parent Bash process. If the directory question appears, reload the wrapper and retry `codex -cr` or `codex --code --resume`. Plain native resume remains unchanged.

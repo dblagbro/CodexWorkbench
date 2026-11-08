@@ -1,7 +1,7 @@
 # Local extension: `codex --code [--one-off] ["initial task"]`.
 # All ordinary Codex invocations retain their original behavior.
 _CODEX_CODE_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-codex() {
+_codex_workbench_dispatch() {
     if [[ "${1-}" == --code ]]; then
         shift
         if [[ "${1-}" == --upgrade ]]; then
@@ -34,8 +34,16 @@ codex() {
     fi
 }
 
+# Keep long-lived Bash tabs current after installers replace the on-disk launcher.
+# Public entrypoints reload definitions, then dispatch once without recursion.
+codex() {
+    source "$_CODEX_CODE_HOME/code-shell.bash" || return $?
+    _codex_workbench_dispatch "$@"
+}
+
 # Separate command names avoid collisions with present or future Codex flags.
 cx() {
+    source "$_CODEX_CODE_HOME/code-shell.bash" || return $?
     python3 "$_CODEX_CODE_HOME/code-workflow.py" start "$@"
 }
 

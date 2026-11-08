@@ -133,6 +133,20 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(self.capture.read_text()), ['resume', '--all', '-c', 'tui.resume_cwd="session"'])
 
+    def test_open_shell_reloads_updated_launcher_on_next_resume(self):
+        self.assertEqual(self.setup_install('--apply').returncode, 0)
+        shell = self.home / '.local/share/codex-code/code-shell.bash'
+        updated = self.home / 'updated-shell.bash'
+        updated.write_text(shell.read_text().replace(
+            'command codex resume --all', 'command codex resume --all --no-alt-screen'))
+        result = subprocess.run(['bash', '--noprofile', '--norc', '-c',
+                                 'source "$1"; cp "$2" "$1"; codex -cr; codex --code --resume',
+                                 'test', str(shell), str(updated)], env=self.env, cwd=self.home,
+                                capture_output=True, text=True, timeout=20)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(self.capture.read_text()),
+                         ['resume', '--all', '--no-alt-screen', '-c', 'tui.resume_cwd="session"'])
+
     def test_one_off_placement_still_works(self):
         self.assertEqual(self.setup_install('--apply').returncode, 0)
         result = self.shell('--code', '--one-off', 'Try a small script')
