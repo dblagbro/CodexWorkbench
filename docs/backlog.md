@@ -8,4 +8,4 @@ Track open/closed state durably, distinguish an intentionally closed session fro
 
 Acceptance: simulated abrupt termination and reboot recovery tests preserve IDs/history, avoid duplicate ownership, retain approval boundaries, and allow local/remote attachment. Real reboot validation must be planned separately so active work is not interrupted. Restoring a conversation is different from automatically resuming every previously running external process.
 
-Status: backlog, not implemented. Remote-control supervision is being implemented separately as a prerequisite.
+Status: backlog, not implemented. Remote-control supervision is implemented; restoring the previous open session set remains pending.
