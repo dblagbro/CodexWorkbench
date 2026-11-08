@@ -12,7 +12,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
 endobj
 5 0 obj
-<< /Length 3988 >>
+<< /Length 4239 >>
 stream
 BT
 /F1 8 Tf
@@ -122,6 +122,14 @@ T*
 T*
 () Tj
 T*
+(SHARED PROJECTS \(new named code projects enroll automatically\)) Tj
+T*
+(  codex --code --handoff --project . init   Preview existing-project enrollment) Tj
+T*
+(Read WORKBENCH.md; load only needed role modules. Add --apply to enroll.) Tj
+T*
+() Tj
+T*
 (FILES / LIMITS) Tj
 T*
 (Installed helpers: ~/.local/share/codex-code/   Settings: ~/.config/codex-code/) Tj
@@ -136,7 +144,7 @@ T*
 T*
 ET
 BT /F1 8 Tf 48 30 Td
-(Codex Workbench 2026.11.07.5 | Page 1/1) Tj ET
+(Codex Workbench 2026.11.07.6 | Page 1/1) Tj ET
 endstream
 endobj
 xref
@@ -150,5 +158,5 @@ xref
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-4349
+4600
 %%EOF

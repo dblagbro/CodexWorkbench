@@ -11,6 +11,8 @@
 - Codex remote-control health reconciliation through supported native commands and a user timer.
 - Portable preview/apply installer, versioned archives, one-page PDF and editable source.
 - Guided unattended-work agreement, private plan validation and context-efficiency procedures. Scheduling is configured and verified per project after settings are agreed; the helper does not run a timer.
+- Automatic enrollment of new named projects with a shared WORKBENCH.md entry and on-demand role references; existing projects enroll explicitly and one-offs remain lightweight. Optional Gemini project loader and documented Cursor AGENTS mechanism do not imply native runtime adapters.
+- Opt-in shared-project handoff with provider-neutral policies, participant review receipts, cooperative single-editor ownership and explicit recovery/reconciliation. Native histories/accounts stay separate; cross-host ACL/partition verification and team messaging are not supplied.
 - Offline automated tests and GitHub CI configuration.
 
 ## Verification scope

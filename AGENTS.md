@@ -15,3 +15,11 @@ Delegate only when current user or task instructions authorize it, with distinct
 For work in the owner environment, read `/mnt/s/code/.site-policy.md` before deployment or network-exposure decisions when available. This private file is not distributed with the public repository; other installations use their own configured shared-root site policy.
 
 Before publishing, follow the baseline/lifecycle publication-privacy rules. Review Git metadata/history and built artifacts as well as staged content. Keep personal information and credentials out of external destinations except narrowly justified, explicitly authorized personal-information disclosures. Owner-approved internal local secret storage does not authorize publication.
+
+
+<!-- WORKBENCH-HANDOFF:BEGIN -->
+## Shared project handoff
+Read `WORKBENCH.md` as the common entry point. If `.workbench/handoff/state.json` exists, read its current policy snapshot and latest checkpoint before working, including after resume. Use `python3 ~/.local/share/codex-code/handoff.py --project . brief` to inspect state and changed files. Other installations may use their own installed helper path.
+Native chats, accounts, credentials and permissions remain separate. Register a pseudonymous participant, inspect changes since its last receipt, then acknowledge the exact revision/policy with `sync`. Claim cooperative edit ownership before editing; other participants inspect only. Recheck revision/ownership before each write batch and record checkpoints before consequential actions and after verification. A prior user's approval is not new authority.
+Never infer takeover permission from age or silence. Stop the prior writer and reconcile interrupted operations before explicit recovery. Do not replay uncertain effects. If state/policy is missing or unreadable, resolve access before claiming shared ownership. This is advisory coordination, not an OS lock on editor processes.
+<!-- WORKBENCH-HANDOFF:END -->

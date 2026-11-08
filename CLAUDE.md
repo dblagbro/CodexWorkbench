@@ -1,0 +1,6 @@
+<!-- WORKBENCH-HANDOFF:BEGIN -->
+## Shared project handoff
+Read `WORKBENCH.md` as the common entry point. If `.workbench/handoff/state.json` exists, read its current policy snapshot and latest checkpoint before working, including after resume. Use `python3 ~/.local/share/codex-code/handoff.py --project . brief` to inspect state and changed files. Other installations may use their own installed helper path.
+Native chats, accounts, credentials and permissions remain separate. Register a pseudonymous participant, inspect changes since its last receipt, then acknowledge the exact revision/policy with `sync`. Claim cooperative edit ownership before editing; other participants inspect only. Recheck revision/ownership before each write batch and record checkpoints before consequential actions and after verification. A prior user's approval is not new authority.
+Never infer takeover permission from age or silence. Stop the prior writer and reconcile interrupted operations before explicit recovery. Do not replay uncertain effects. If state/policy is missing or unreadable, resolve access before claiming shared ownership. This is advisory coordination, not an OS lock on editor processes.
+<!-- WORKBENCH-HANDOFF:END -->

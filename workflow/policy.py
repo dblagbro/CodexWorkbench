@@ -34,7 +34,7 @@ def sources():
         skill = HERE.parent / 'skills/project-bootstrap'
     data = {name: (HERE / name).read_bytes() for name in (
         'code-workflow.py', 'code-workflow-instructions.txt', 'code-baseline.txt',
-        'lifecycle.md', 'coordinator.py', 'policy.py')}
+        'lifecycle.md', 'coordinator.py', 'policy.py', 'handoff.py', 'project-entry.md')}
     for path in sorted(skill.rglob('*')):
         if path.is_file() and '__pycache__' not in path.parts and path.suffix != '.pyc':
             data['skills/project-bootstrap/' + str(path.relative_to(skill))] = path.read_bytes()

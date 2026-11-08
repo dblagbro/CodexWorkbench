@@ -112,3 +112,13 @@ Workbench resume shortcuts pass the supported per-invocation setting `tui.resume
 ### Already-open Bash tabs
 
 After first installing launcher auto-reload support, run `source ~/.local/share/codex-code/code-shell.bash` once in each already-open tab. Thereafter Workbench shortcuts reload their on-disk launcher definitions on every invocation. Session-policy upgrades update session instructions; they do not by themselves replace functions previously loaded into a parent Bash process. If the directory question appears, reload the wrapper and retry `codex -cr` or `codex --code --resume`. Plain native resume remains unchanged.
+
+## Modular project entry and shared handoff
+
+New named code projects automatically receive `WORKBENCH.md`, native instruction loaders and private policy/role resources when promoted from a fresh draft/one-off. Existing projects, including renamed adopted repositories, enroll only explicitly. Use installer `--project-bootstrap off` to opt out for new named projects; this does not remove existing enrollment.
+
+For an existing project, preview with `codex --code --handoff --project . init`, then add `--apply` to enroll. `claude --code --handoff` uses the same helper when that wrapper is enabled. Optional `init --apply --with-gemini` emits a `GEMINI.md` instruction loader only. Cursor's documented `AGENTS.md` support can read the common entry. Native Gemini/Cursor launch/resume or account migration is not implemented.
+
+Read [shared handoff](shared-project-handoff.md) for join/brief/sync/claim/checkpoint/release/recovery and actual boundaries. Only relevant modules are loaded from the [role router](../skills/project-bootstrap/references/roles/index.md). Existing project instructions are preserved. Shared ownership is cooperative, and cross-OS-user ACL/NFS verification remains deployment-specific. Fork/worktree teams and real-time messaging are a later phase.
+
+Read [quality and delivery](quality-and-delivery.md) for enforced CI checks versus agent procedures and outstanding gates, and [workflow research](agent-workflow-research.md) for evaluated standards/frameworks and revisit triggers. Permission-reuse guidance checks effective native settings and existing unattended agreements before asking again; explicitly retained task/production approval gates remain applicable.

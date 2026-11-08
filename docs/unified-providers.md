@@ -14,6 +14,7 @@ Workbench shares project placement, lifecycle guidance, host discovery, policy s
 | Existing policy adoption | Explicit queued safe-checkpoint review and acknowledgement | Explicit in-session read and acknowledgement; no external queue assumed |
 | Title update | Current-session native title tool | Native mechanism when exposed; `/rename` fallback remains pending until confirmed |
 | Remote-control supervision | Supported native daemon and user timer | Separate capability; Codex daemon controls are not reused |
+| Shared project handoff | Cooperative project checkpoints/ownership and per-participant receipts | Same provider-neutral project protocol; native chat stays separate |
 | History transfer between providers | Not supplied | Not supplied |
 
 ## The Claude resume investigation
@@ -54,3 +55,5 @@ The GitHub repository and portable archive distribute local CLI integration, sou
 - [Official Python Agent SDK](https://github.com/anthropics/claude-agent-sdk-python): metadata adapter dependency.
 - [Codex app-server](https://learn.chatgpt.com/docs/app-server): native metadata and same-ID resume.
 - [Plugin packaging](https://developers.openai.com/plugins/build/plugins): optional future skill distribution.
+
+See [shared project handoff](shared-project-handoff.md) for the opt-in first version and its ownership/recovery limits.

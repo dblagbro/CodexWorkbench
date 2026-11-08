@@ -62,6 +62,14 @@ A "keep going" request continues currently authorized work. Offer missing unatte
 
 Persist the agreement privately and implement supported scheduling only within its agreed scope. Verify actual scheduler wakes, native ownership/busy checks, locking, bounded retries, deadline/stop controls and notification behavior. Inspect uncertain launches before retrying. Do useful ready work before declaring all work blocked. Deduplicate blocker alerts, retain required approvals and disable recurrence at expiry/completion/stop. Report unavailable capabilities honestly. The plan helper is not an inference worker or scheduler.
 
+## Quality feedback and adaptation
+
+At relevant design/implementation/release checkpoints, review duplication, coupling, repeated defects and manual recovery before they become blockers. Prefer bounded behavior-preserving refactors with appropriate evidence over large speculative rewrites. Use the bootstrap quality-loop reference for proportional defect triage, safe reproduction, cause-oriented remediation, regression verification and independent review where consequential.
+
+Update README/navigation, command/API help, user-facing help where useful, configuration examples, manuals/runbooks and recovery instructions alongside interface changes. For a real UI, exercise browser interactions/rendering and relevant accessibility states using supported automation; CLI-only work does not require Playwright. Record actual enforced checks and remaining QA/security/release gaps.
+
+Revisit build/buy/integrate and maintained open-source alternatives at meaningful milestones or material changes in upstream support, security, capability, cost or user adoption. Use current primary sources and dated evidence, migration/exit costs and bounded experiments. Label predictions as assumptions with review triggers. Recommend justified pivots, preserving decision/approval gates; do not pretend recurring calendar research is scheduled without an installed agreed mechanism.
+
 ## Continuity and completion
 
 Keep objective/scope, verified environment, decisions, status, outstanding issues, next actions, and deployment/recovery state concise and current. Fix safe project-local housekeeping; propose consequential restructuring and do not delete another project's evidence.

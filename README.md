@@ -2,7 +2,7 @@
 
 An Ubuntu CLI add-on for organized coding projects, searchable native sessions, and versioned, project-sensitive policies. Codex and Claude use provider-specific adapters over the same project and policy layer.
 
-Workbench preserves native conversation identities and project conventions. Plain agent invocations keep native behavior. Opt-in code mode adds placement, lifecycle guidance, discovery, title handling and reviewable policy updates.
+Workbench preserves native conversation identities and project conventions. Plain agent invocations keep native CLI behavior; native tools still read project instructions in explicitly enrolled projects. Opt-in code mode adds placement, lifecycle guidance, discovery, title handling and reviewable policy updates.
 
 ## Print the quick reference
 
@@ -72,3 +72,8 @@ SSH resume keeps execution on the selected host. Provider histories are not merg
 This repository distributes local CLI integration. A future plugin can package reusable skills, while shell integration still requires explicit local setup and trust. The source is MIT licensed; native CLIs and optional dependencies retain their own licenses.
 
 - [Unattended setup and context efficiency](docs/unattended-and-context.md)
+
+- [Shared project handoff across providers/accounts](docs/shared-project-handoff.md)
+- [Quality and delivery: enforced checks versus guidance](docs/quality-and-delivery.md)
+
+New named code projects receive a small `WORKBENCH.md` entry point, native loaders and on-demand discipline references. Existing projects enroll explicitly through `codex --code --handoff --project . init`; add `--apply` after preview. One-offs keep their simple workflow. See [modular-workflow research and adoption decisions](docs/agent-workflow-research.md).

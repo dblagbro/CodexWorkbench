@@ -1,0 +1,53 @@
+# Modular agent workflows: adopt formats, keep integration thin
+
+Reviewed 2026-11-08 UTC using primary documentation, tagged source and GitHub repository/release APIs. No package was installed and no upstream skill text was copied. Versions below are observation snapshots, not automatic upgrade targets. This review evaluates fit; it does not establish comparative accuracy, safety, token savings or latency through benchmarks.
+
+## Shortlist and evidence
+
+| Option and inspected version | Verified capabilities / license | Fit and limits for Workbench | Decision |
+| --- | --- | --- | --- |
+| [Agent Skills specification](https://agentskills.io/specification), repository head [`83021e2be457`](https://github.com/agentskills/agentskills/tree/83021e2be457), pushed 2026-11-04 | `SKILL.md` metadata with optional scripts/references/assets; staged discovery and loading. Repository [Apache-2.0](https://github.com/agentskills/agentskills/blob/83021e2be457/LICENSE); each imported skill can carry a separate license. | Good portable packaging for concise role discovery and just-in-time detail. It is a format, not an ownership coordinator, scheduler or guarantee of equal client behavior. Experimental permission metadata is not a substitute for native authorization. | **Adopt the format.** Independently author focused references and verify each target client's behavior. |
+| [AGENTS.md](https://agents.md/), repository head [`d001185d792e`](https://github.com/agentsmd/agents.md/tree/d001185d792e), pushed 2026-09-10 | Plain project instruction format complementing a human README; repository [MIT](https://github.com/agentsmd/agents.md/blob/d001185d792e/LICENSE). | Good small project entrypoint linking common policy and relevant role references. Recognition, precedence and live reload depend on the client/version. Instructions are cooperative guidance, not access control. | **Adopt narrow loaders**, preserving project rules; retain provider-specific entrypoints where required. |
+| [GitHub Spec Kit v1.3.2](https://github.com/github/spec-kit/releases/tag/v1.3.2), released 2026-11-06 | [Tagged README](https://github.com/github/spec-kit/blob/v1.3.2/README.md) describes configurable spec/planning delivery, extensions, workflows, presets, overlays and role/team bundles; [MIT](https://github.com/github/spec-kit/blob/v1.3.2/LICENSE). Requires Python 3.11+ and uv. | Useful future integration for substantial specification/governance workflows. Its runtime floor exceeds Workbench's Python 3.10 floor. Catalog entries still need review. Installing another workflow engine for small fixes would duplicate current mechanics. | **Integrate selectively later**, after an isolated proof and compatibility decision; do not replace the current launcher or handoff protocol. |
+| [BMad Method v6.12.4](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v6.12.4), released 2026-10-14; main reviewed separately | [Tagged README](https://github.com/bmad-code-org/BMAD-METHOD/blob/v6.12.4/README.md) describes proportionate planning and product, architecture, UX, implementation and testing perspectives. [License](https://github.com/bmad-code-org/BMAD-METHOD/blob/v6.12.4/LICENSE) is MIT with a separate trademark notice. Current [main README](https://github.com/bmad-code-org/BMAD-METHOD) advertises a v7 preview with breaking changes. | Closest role-based methodology fit. Useful candidate for larger product/planning phases. Stable tag and preview documentation must not be mixed. GitHub's repository license classifier returned `NOASSERTION`; inspecting the actual tagged license resolved the text, not all trademark/distribution questions. | **Evaluate selected workflows on a fixture** when deeper delivery planning is needed; no blanket installation or branding reuse. |
+| [Superpowers v7.0.2](https://github.com/obra/superpowers/releases/tag/v7.0.2), released 2026-11-03 | [Tagged README](https://github.com/obra/superpowers/blob/v7.0.2/README.md) describes composable planning/debugging/review/testing/worktree skills and multiple client integrations; [MIT](https://github.com/obra/superpowers/blob/v7.0.2/LICENSE). It also documents mandatory workflow/TDD policies and optional visual-companion outbound telemetry. | Useful review/debugging patterns and a concrete candidate for selected workflows. Blanket defaults would conflict with Workbench's proportionate testing and small-task approach. Inspect hooks, transcript access, telemetry and update behavior before adoption. | **Consider opt-in integration**, with explicit conflict/privacy review and measured usefulness. Do not import its full policy by default. |
+
+Repository API metadata reported all five repositories unarchived. Release dates and recent source activity are maintenance signals, not an endorsement or proof of production stability. The observation used live API release metadata because indexed release search results were older. Recheck the exact selected tag, source, dependencies and license before any installation or redistribution.
+
+## Proposed thin router
+
+This is a design recommendation, not a claim that every role has a native agent implementation. Keep one small discoverable router with each role's purpose, trigger, deliverable, relevant references and authority limits. Load one primary role and the necessary specialist/reviewer references as a feature enters scope. Do not preload every role body or spawn persistent workers merely because a role exists.
+
+| Role family | Select when / useful output |
+| --- | --- |
+| Product, project and research | Unclear outcomes/priorities, scope or adoption decisions; concise requirements, acceptance criteria, alternatives and evidence. |
+| Architecture and engineering | Expensive design choices or implementation; boundaries, a working slice, meaningful tests and rationale. |
+| Design, UX, UI and full stack | User workflows or web/application changes; interaction design, relevant frontend/backend contracts and actual UI/browser verification. |
+| Infrastructure, network and firewall | Hosting, routing, TLS, remote systems or physical/network controls; verified target/state, minimal change, permission boundary, rollback and operational evidence. |
+| QA, security, release and documentation | Independent challenge, regression risk, publication or handoff; findings by impact, reproducible checks, fix verification, privacy review and synchronized help/manuals. |
+
+Roles describe responsibilities, not separate identities, credentials or approvals. A full-stack role may be enough for a small feature; higher-risk changes can need separate review. Native adapters must still verify available tools, models, instruction loading and permissions. The shared handoff layer remains responsible for project revision, editor ownership, checkpoints and per-participant adoption. Existing provider histories, credentials and account memories are not merged by a role router.
+
+Use short evidence-based handoffs and versioned references. Reuse information still in context, but reload changed rules or missing detail after compaction. Measure representative task correctness, input/output tokens where exposed, elapsed time and failure recovery before claiming a benefit. No selected standard guarantees shared model memory or prompt-cache hits.
+
+## Additional clients: evidence, not implemented support
+
+- [Gemini CLI project context](https://geminicli.com/docs/cli/gemini-md/) documents `GEMINI.md`, global/workspace context, just-in-time directory context, imports and context reload controls. Workbench can now optionally emit a narrow GEMINI.md loader with `handoff init --with-gemini`; this is instruction-file support only. A future native runtime adapter still needs installed-version checks. This review did not test launch/resume, IDs, permissions, native history, notifications or ownership integration.
+- [Cursor rules](https://cursor.com/docs/rules) documents plain `AGENTS.md` and scoped `.cursor/rules/*.mdc` with activation metadata. A file-format match does not demonstrate full CLI/IDE/cloud adapter compatibility. Test precedence, scope and live update behavior separately.
+- Codex and Claude retain their existing distinct adapters and instruction entrypoints. Grok or another unspecified tool needs a named product/version and primary capability evidence before adapter design; model access alone does not identify a coding-agent runtime.
+
+## Revisit and pivot triggers
+
+Review at a relevant milestone or when a concrete trigger occurs; this document creates no recurring research timer.
+
+- An upstream stable release supplies a missing requirement with less maintained custom code, or repeated duplication appears across projects. Compare adopt/integrate/keep decisions using a small proof, maintenance costs and migration/rollback effort.
+- A supported client changes instruction, skill, permission, session or hook behavior. Re-run adapter compatibility fixtures before enabling the new behavior.
+- Representative tasks show rising context/latency cost, missed requirements, repeated bugs or review failures. Change the routing/process based on measured causes rather than popularity or speculative predictions.
+- A license, dependency, telemetry, security or maintenance change affects trust or redistribution. Pause the affected optional integration and assess a replacement.
+- Team concurrency needs exceed one editor per working directory. Evaluate isolated worktrees/forks, tested review/merge gates and a separate collaboration channel; messages do not transfer edit authority or production approval.
+
+Keep forecasts separate from verified facts. A new trend can justify a bounded experiment, not an automatic stack rewrite or change to the user's agreed roadmap. Preserve the ability to export project records and remove an optional framework.
+
+## Adjacent interoperability options
+
+Primary documentation also reviewed: [ACP](https://agentclientprotocol.com/get-started/introduction) standardizes editor-to-agent communication; [A2A](https://a2a-protocol.org/latest/) covers agent-to-agent communication without requiring shared internal memory; [OpenHands](https://docs.openhands.dev/overview/introduction) offers a broader SDK/server/browser-client ecosystem. Inference from these documented scopes: evaluate ACP for future client adapters, A2A for the planned team channel, and OpenHands if orchestration/UI needs justify a larger runtime. None was installed or benchmarked, and none by itself supplies this project's repository ownership/approval policy. Recheck exact versions, licenses, transports, authentication and operational cost before any adoption.

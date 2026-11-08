@@ -4,6 +4,11 @@ _CODEX_CODE_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 _codex_workbench_dispatch() {
     if [[ "${1-}" == --code ]]; then
         shift
+        if [[ "${1-}" == --handoff ]]; then
+            shift
+            python3 "$_CODEX_CODE_HOME/handoff.py" "$@"
+            return $?
+        fi
         if [[ "${1-}" == --upgrade ]]; then
             shift
             python3 "$_CODEX_CODE_HOME/policy.py" "$@"

@@ -50,6 +50,10 @@ CLAUDE (OPTIONAL: install with --with-claude)
 Native fallback: command claude --resume, then Ctrl+A for all projects and search.
 Existing Claude chats require an explicit policy read; provider histories stay native.
 
+SHARED PROJECTS (new named code projects enroll automatically)
+  codex --code --handoff --project . init   Preview existing-project enrollment
+Read WORKBENCH.md; load only needed role modules. Add --apply to enroll.
+
 FILES / LIMITS
 Installed helpers: ~/.local/share/codex-code/   Settings: ~/.config/codex-code/
 Stable sessions: ~/.local/share/codex-work/sessions/   Project files: /mnt/s/code/

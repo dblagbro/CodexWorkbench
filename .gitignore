@@ -16,3 +16,5 @@ docs/email-update.html
 *.db
 *.log
 *.jsonl
+
+/.workbench/

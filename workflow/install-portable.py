@@ -11,7 +11,7 @@ import os
 import subprocess
 
 FILES = ['code-workflow.py', 'code-workflow-instructions.txt', 'code-shell.bash',
-         'install-portable.py', 'code-baseline.txt', 'lifecycle.md', 'remote-control.py', 'resume.py', 'coordinator.py', 'policy.py', 'session_picker.py', 'claude.py', 'claude-shell.bash']
+         'install-portable.py', 'code-baseline.txt', 'lifecycle.md', 'remote-control.py', 'resume.py', 'coordinator.py', 'policy.py', 'session_picker.py', 'claude.py', 'claude-shell.bash', 'handoff.py', 'project-entry.md']
 
 
 def payload(source):
@@ -53,6 +53,9 @@ def install(args):
     settings.setdefault('chrome', False)
     settings.setdefault('remote_control', True)
     settings.setdefault('claude_enabled', False)
+    settings.setdefault('project_bootstrap', True)
+    if args.project_bootstrap is not None:
+        settings['project_bootstrap'] = args.project_bootstrap == 'on'
     if args.with_claude:
         if not shutil.which('claude') and not (home / '.local/bin/claude').is_file():
             raise ValueError('Install Claude Code separately before enabling its Workbench wrapper.')
@@ -184,6 +187,7 @@ def main():
     parser.add_argument('--scratch-root')
     parser.add_argument('--session-root')
     parser.add_argument('--chrome', choices=['on', 'off'])
+    parser.add_argument('--project-bootstrap', choices=['on', 'off'], help='Automatically enroll new named code projects with the shared entry/role resources (default on); existing projects are unchanged.')
     parser.add_argument('--with-claude', action='store_true', help='Enable the opt-in Claude wrapper and install its optional metadata SDK in an isolated environment.')
     args = parser.parse_args()
     if sys.version_info < (3, 10):

@@ -40,3 +40,9 @@ For an all-work blocker, describe what stopped progress, what independent work w
 ## Handoff
 
 Record actual mechanism/unit names, owner host/thread, deadline/timezone, check/report cadence, scope/budget, controls, last/next run, first-wake evidence, notification verification and remaining limitations. Keep runtime development automation separate from the deployed product. Do not describe proposed or simulated behavior as an installed unattended service.
+
+## Repeated permission questions
+
+When the owner reports that access was already granted, check the effective current-session permission/sandbox policy and saved unattended agreement rather than assuming a launch default is still active. Preserve user-selected native permissions when resuming. Distinguish a technical execution approval from a missing material decision, an actual credential/access failure, and an explicit task/production gate. Do not ask conversational permission again for routine actions already authorized by the current owner. Existing plan settings and notification grants remain usable throughout their agreed runtime; do not re-onboard each wake.
+
+Full native access or a never-ask setting is not permission for excluded production actions, billing, publication or another user's private credentials. Retain specifically agreed gates. If a technical control truly blocks an action, identify the exact command/reason, honor the control and continue independent work. Do not toggle permissions, retry a denial or fabricate execution to make the timer appear successful. Check actual acknowledgement/progress rather than assuming an installed timer is stalled because a chat went idle. If an action is in scope and the current native policy permits it, proceed instead of asking a redundant "may I continue?".

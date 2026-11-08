@@ -9,7 +9,7 @@ import tarfile
 import textwrap
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '2026.11.07.5'
+VERSION = '2026.11.07.6'
 
 
 def pdf_guide(text):
@@ -57,9 +57,11 @@ def main():
     for relative, data in payload.items():
         path = relative if relative.parts[0] == 'skills' else Path('workflow') / relative
         files[str(path)] = data
+    for path in sorted((ROOT / 'scripts').glob('*.py')):
+        files[str(path.relative_to(ROOT))] = path.read_bytes()
     for path in sorted((ROOT / 'tests').glob('*.py')):
         files[str(path.relative_to(ROOT))] = path.read_bytes()
-    for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'unattended-and-context.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
+    for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'unattended-and-context.md', 'shared-project-handoff.md', 'quality-and-delivery.md', 'agent-workflow-research.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
         files['docs/' + name] = (ROOT / 'docs' / name).read_bytes()
     files['LICENSE'] = (ROOT / 'LICENSE').read_bytes()
     files['requirements-claude.txt'] = (ROOT / 'requirements-claude.txt').read_bytes()
@@ -79,7 +81,9 @@ def main():
             bundle.addfile(entry, io.BytesIO(data))
     pdf = destination / 'Codex-Commands-and-Portable-Setup-Updated.pdf'
     pdf.write_bytes(pdf_guide((ROOT / 'docs/commands-and-installation.md').read_text()))
-    sums = ''.join(hashlib.sha256(path.read_bytes()).hexdigest() + '  ' + path.name + '\n' for path in [archive, pdf])
+    one_page = destination / 'Codex-Workbench-One-Page.pdf'
+    one_page.write_bytes((ROOT / 'docs/Codex-Workbench-One-Page.pdf').read_bytes())
+    sums = ''.join(hashlib.sha256(path.read_bytes()).hexdigest() + '  ' + path.name + '\n' for path in [archive, pdf, one_page])
     (destination / 'SHA256SUMS').write_text(sums)
     print(json.dumps({'version': VERSION, 'archive': str(archive), 'guide_pdf': str(pdf), 'files': len(files)}))
 

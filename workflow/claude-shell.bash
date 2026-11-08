@@ -15,7 +15,10 @@ _workbench_claude_python() {
 claude() {
     if [[ "${1-}" == --code ]]; then
         shift
-        if [[ "${1-}" == --upgrade ]]; then
+        if [[ "${1-}" == --handoff ]]; then
+            shift
+            python3 "$_WORKBENCH_CLAUDE_HOME/handoff.py" "$@"
+        elif [[ "${1-}" == --upgrade ]]; then
             shift
             python3 "$_WORKBENCH_CLAUDE_HOME/policy.py" --engine claude "$@"
         elif [[ "${1-}" == --resume ]]; then

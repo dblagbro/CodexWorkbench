@@ -157,6 +157,8 @@ else:
         self.assertEqual(state['kind'], 'one-off')
         self.assertEqual(Path(state['workdir']).parent, self.home / 'scratch')
         self.assertFalse((folder / 'draft').exists())
+        self.assertFalse((Path(state['workdir']) / 'WORKBENCH.md').exists())
+        self.assertFalse((Path(state['workdir']) / '.workbench/handoff/state.json').exists())
         self.assertTrue((folder / 'AGENTS.md').exists())
         receipt = json.loads((folder / 'workbench/policy.json').read_text())
         inventory = json.loads((folder / 'workbench/policy-revisions' / receipt['revision'] / 'inventory.json').read_text())
@@ -210,6 +212,10 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         state = json.loads((folder / 'state.json').read_text())
         self.assertEqual(state['desired_title'], 'My-Project')
+        project = Path(state['workdir'])
+        self.assertTrue((project / 'WORKBENCH.md').exists())
+        self.assertTrue((project / 'CLAUDE.md').exists())
+        self.assertTrue((project / '.workbench/handoff/state.json').exists())
         self.assertEqual(state['title_sync'], 'pending')
         self.assertNotIn('display_title', state)
         wrong = self.helper(helper, folder, 'ack-title', '--title', 'Wrong')
@@ -229,6 +235,9 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         state = json.loads((folder / 'state.json').read_text())
         self.assertEqual(Path(state['workdir']).name, 'Renamed')
+        shared = json.loads((Path(state['workdir']) / '.workbench/handoff/state.json').read_text())
+        self.assertEqual(shared['project'], state['workdir'])
+        self.assertEqual(shared['events'][-1]['kind'], 'project_moved')
         self.assertEqual(state['desired_title'], 'Renamed')
         self.assertEqual(state['display_title'], 'Original')
         self.assertEqual(state['title_sync'], 'pending')
@@ -248,6 +257,19 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads((folder / 'state.json').read_text())['display_title_mode'], 'project')
 
+    def test_renaming_adopted_existing_project_does_not_enroll_it(self):
+        folder, helper = self.new_draft()
+        existing = self.home / 'code/ExistingUnenrolled'
+        existing.mkdir()
+        (existing / 'AGENTS.md').write_text('Existing local rules.\n')
+        self.assertEqual(self.helper(helper, folder, 'adopt', '--project', str(existing)).returncode, 0)
+        result = self.helper(helper, folder, 'place', '--name', 'ExistingRenamed')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        target = self.home / 'code/ExistingRenamed'
+        self.assertEqual((target / 'AGENTS.md').read_text(), 'Existing local rules.\n')
+        self.assertFalse((target / 'WORKBENCH.md').exists())
+        self.assertFalse((target / '.workbench').exists())
+
     def test_adopting_existing_project_queues_title_without_moving_files(self):
         folder, helper = self.new_draft()
         existing = self.home / 'code/Established'
@@ -258,6 +280,7 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         state = json.loads((folder / 'state.json').read_text())
         self.assertEqual(state['workdir'], str(existing))
+        self.assertFalse((existing / 'WORKBENCH.md').exists())
         self.assertEqual(state['desired_title'], 'Established')
         self.assertEqual((existing / 'keep.txt').read_text(), 'existing data')
         self.assertEqual((folder / 'draft/draft.txt').read_text(), 'draft data')

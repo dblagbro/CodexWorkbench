@@ -119,16 +119,28 @@ def finish(folder, name=None, one_off=False):
     target.parent.mkdir(parents=True, exist_ok=True)
     # copytree refuses existing destinations. Keep the source intact if copying fails.
     # Copying rather than renaming also works across the local disk and NAS.
-    shutil.copytree(source, target, symlinks=True)
-    state.update(workdir=str(target), kind='one-off' if one_off else 'project', name=name)
-    if not one_off:
-        plan_title(state, target)
-    else:
-        # Timestamped one-off storage is not a useful user-facing project title.
-        for key in ('desired_title', 'display_title', 'display_title_mode', 'title_sync', 'display_title_thread_id'):
-            state.pop(key, None)
-    save_state(folder, state)
-    shutil.rmtree(source)
+    handoff = runpy.run_path(str(HERE / 'handoff.py'))
+    try:
+        with handoff['move_guard'](source) as shared:
+            managed_folder = source / '.workbench/handoff'
+            def ignore_transaction(path, names):
+                return ['lock'] if Path(path) == managed_folder and 'lock' in names else []
+            shutil.copytree(source, target, symlinks=True, ignore=ignore_transaction)
+            if shared:
+                handoff['rebind_copy'](target, shared)
+            elif not one_off and state.get('kind') in ('draft', 'one-off') and SETTINGS.get('project_bootstrap', True):
+                handoff['initialize'](target, apply=True)
+            state.update(workdir=str(target), kind='one-off' if one_off else 'project', name=name)
+            if not one_off:
+                plan_title(state, target)
+            else:
+                for key in ('desired_title', 'display_title', 'display_title_mode', 'title_sync', 'display_title_thread_id'):
+                    state.pop(key, None)
+            save_state(folder, state)
+            shutil.rmtree(source)
+    except Exception as exc:
+        # Preserve the existing copy-failure contract and identify both paths.
+        raise RuntimeError(f'Placement could not finish: {exc}. Inspect source {source} and destination {target}; neither is automatically cleaned up.') from None
     print(f'Work directory: {target}')
     if state.get('title_sync') == 'pending':
         print('Display title pending: use the current-session title tool, then acknowledge it.')
