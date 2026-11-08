@@ -1,0 +1,152 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 3965 >>
+stream
+BT
+/F1 8 Tf
+11 TL
+48 752 Td
+(# Codex Workbench: daily commands) Tj
+T*
+(Ubuntu add-on for project setup, native session resume and scoped policy updates.) Tj
+T*
+() Tj
+T*
+(ACTIVATE in an already-open Bash terminal \(new terminals load this automatically\)) Tj
+T*
+(  source ~/.local/share/codex-code/code-shell.bash) Tj
+T*
+() Tj
+T*
+(START WORK) Tj
+T*
+(  codex --code                         Start with the Workbench baseline) Tj
+T*
+(  cx "your task"                       Same workflow, with an initial task) Tj
+T*
+(  cx --one-off "small experiment"      Disposable work without project ceremony) Tj
+T*
+(Quick tasks stay quick. Existing projects keep their conventions. Substantial work) Tj
+T*
+(loads only relevant lifecycle guidance. Plain codex retains normal behavior.) Tj
+T*
+() Tj
+T*
+(FIND / RESUME SESSIONS) Tj
+T*
+(  codex -cr                            All-directory native picker on this host) Tj
+T*
+(  codex --coderesume                   Same as -cr; cxr is also an alias) Tj
+T*
+(  cxr --last                           Latest native session across directories) Tj
+T*
+(  codex -cr --host HOST                Picker on an SSH-accessible host) Tj
+T*
+(  codex -cr --host HOST THREAD_UUID    Continue that original native thread) Tj
+T*
+(SSH access keeps execution/state on the selected host. Shared project files alone) Tj
+T*
+(do not migrate conversation history, credentials, memory or running processes.) Tj
+T*
+() Tj
+T*
+(UPGRADE EXISTING CODE-MODE SESSIONS) Tj
+T*
+(  codex --code --upgrade               Choose an outdated session; preview policy) Tj
+T*
+(  codex --code --upgrade --apply --notify) Tj
+T*
+(                                       Choose, attach and queue a relevance review) Tj
+T*
+(In the menu: /words searches, a number or exact ID selects, q cancels.) Tj
+T*
+(For scripts: add --thread THREAD_UUID. Add --host HOST to target another host.) Tj
+T*
+(  codex --code --upgrade --thread THREAD_UUID --check) Tj
+T*
+(Only an agent's acknowledgement confirms its review. It records applicable,) Tj
+T*
+(skipped or conflicting rules, preserving the task, history and local requirements.) Tj
+T*
+() Tj
+T*
+(INSTALL / UPDATE THE ADD-ON \(Codex is installed/authenticated separately\)) Tj
+T*
+(  python3 workflow/install-portable.py --project-root /mnt/s/code --chrome off) Tj
+T*
+(Review the preview, then repeat with --apply. Missing external storage is refused.) Tj
+T*
+(Python 3.10+; existing tomli helps configuration inventory on Python 3.10.) Tj
+T*
+() Tj
+T*
+(REMOTE CONTROL / KNOWLEDGE) Tj
+T*
+(  systemctl --user status codex-code-remote-control.timer) Tj
+T*
+(  python3 ~/.local/share/codex-code/coordinator.py probe) Tj
+T*
+(  python3 ~/.local/share/codex-code/coordinator.py search "topic") Tj
+T*
+(Remote-control recovery is enabled by default; pairing may require account setup.) Tj
+T*
+(KB uses each host's existing scoped identity. Vault access awaits separate rollout.) Tj
+T*
+() Tj
+T*
+(CLAUDE \(OPTIONAL: install with --with-claude\)) Tj
+T*
+(  claude --code "task"                 Shared baseline, native Claude permissions) Tj
+T*
+(  claude --resume                      All-project metadata menu; native fallback) Tj
+T*
+(  claude --code --upgrade              Choose registered Claude policy updates) Tj
+T*
+(Native fallback: command claude --resume, then Ctrl+A for all projects and search.) Tj
+T*
+(Existing Claude chats require an explicit policy read; provider histories stay native.) Tj
+T*
+() Tj
+T*
+(FILES / LIMITS) Tj
+T*
+(Installed helpers: ~/.local/share/codex-code/   Settings: ~/.config/codex-code/) Tj
+T*
+(Stable sessions: ~/.local/share/codex-work/sessions/   Project files: /mnt/s/code/) Tj
+T*
+(Policy snapshots and receipts stay in the selected session's workbench/ directory.) Tj
+T*
+(Source/docs: github.com/dblagbro/CodexWorkbench | docs/commands-and-installation.md) Tj
+T*
+(Reboot session restoration, execution-host migration and full vault access are pending.) Tj
+T*
+ET
+BT /F1 8 Tf 48 30 Td
+(Codex Workbench 2026.11.07.4 | Page 1/1) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000183 00000 n 
+0000000309 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+4326
+%%EOF

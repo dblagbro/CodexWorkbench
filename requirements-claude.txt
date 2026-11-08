@@ -1,0 +1,2 @@
+# Optional metadata adapter only; no model call or native CLI replacement.
+claude-agent-sdk==0.2.179

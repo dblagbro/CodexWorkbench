@@ -1,0 +1,11 @@
+# Backlog
+
+## Restore sessions after power loss or reboot
+
+Requested 2026-11-07. Resume conversations that were open before power loss, reboot, shutdown, or halt, preserving native thread and session-tree IDs. Re-establish remote control and permit attachment from a local terminal, SSH, or supported app/web surface.
+
+Track open/closed state durably, distinguish an intentionally closed session from an interrupted host, and restore only the previous open set. Restore conversations without automatically repeating the last command, pending approval, production mutation, or hardware action. Reconcile native daemon state to avoid launching duplicates. Refresh host/tool/mount evidence after startup. Retain failure status and a bounded retry policy, and provide opt-out and an inspectable recovery report.
+
+Acceptance: simulated abrupt termination and reboot recovery tests preserve IDs/history, avoid duplicate ownership, retain approval boundaries, and allow local/remote attachment. Real reboot validation must be planned separately so active work is not interrupted. Restoring a conversation is different from automatically resuming every previously running external process.
+
+Status: backlog, not implemented. Remote-control supervision is being implemented separately as a prerequisite.
