@@ -59,7 +59,7 @@ def main():
         files[str(path)] = data
     for path in sorted((ROOT / 'tests').glob('*.py')):
         files[str(path.relative_to(ROOT))] = path.read_bytes()
-    for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
+    for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'unattended-and-context.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
         files['docs/' + name] = (ROOT / 'docs' / name).read_bytes()
     files['LICENSE'] = (ROOT / 'LICENSE').read_bytes()
     files['requirements-claude.txt'] = (ROOT / 'requirements-claude.txt').read_bytes()

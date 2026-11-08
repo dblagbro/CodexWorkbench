@@ -70,3 +70,5 @@ Collected tests use isolated homes, fixtures and fake native executables. They d
 SSH resume keeps execution on the selected host. Provider histories are not merged. Shared cloud memory, live database migration, reboot replay and credential-vault access are not supplied by this add-on.
 
 This repository distributes local CLI integration. A future plugin can package reusable skills, while shell integration still requires explicit local setup and trust. The source is MIT licensed; native CLIs and optional dependencies retain their own licenses.
+
+- [Unattended setup and context efficiency](docs/unattended-and-context.md)

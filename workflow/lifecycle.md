@@ -56,6 +56,12 @@ Choose tests by risk: logic, contracts, permissions, migrations, interruptions, 
 
 For continuing projects, discover the actual Git/CI platform and visibility before choosing pipelines or registries. Add relevant lint/tests/build/security checks, versioned artifacts, separated environments, protected credentials, migrations, backups, smoke tests, and rollback. CI must not require the original home directory or an active agent session. A disposable script may need only a reproducible check.
 
+## Unattended continuation
+
+A "keep going" request continues currently authorized work. Offer missing unattended settings once, using the bundled project-bootstrap `references/unattended.md`: how far through priorities, self-check and status cadence, finite runtime/deadline and resource budget, stop boundaries, and explicit blocker-notification details. Reuse existing answers and continue independent work while waiting. A request to add the policy does not itself schedule the current project.
+
+Persist the agreement privately and implement supported scheduling only within its agreed scope. Verify actual scheduler wakes, native ownership/busy checks, locking, bounded retries, deadline/stop controls and notification behavior. Inspect uncertain launches before retrying. Do useful ready work before declaring all work blocked. Deduplicate blocker alerts, retain required approvals and disable recurrence at expiry/completion/stop. Report unavailable capabilities honestly. The plan helper is not an inference worker or scheduler.
+
 ## Continuity and completion
 
 Keep objective/scope, verified environment, decisions, status, outstanding issues, next actions, and deployment/recovery state concise and current. Fix safe project-local housekeeping; propose consequential restructuring and do not delete another project's evidence.

@@ -10,6 +10,7 @@
 - Conditional lifecycle guidance, read-only coordinator KB adapter and explicit upcoming-vault boundary.
 - Codex remote-control health reconciliation through supported native commands and a user timer.
 - Portable preview/apply installer, versioned archives, one-page PDF and editable source.
+- Guided unattended-work agreement, private plan validation and context-efficiency procedures. Scheduling is configured and verified per project after settings are agreed; the helper does not run a timer.
 - Offline automated tests and GitHub CI configuration.
 
 ## Verification scope
