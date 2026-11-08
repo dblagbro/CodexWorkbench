@@ -9,7 +9,7 @@ import tarfile
 import textwrap
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '2026.11.07.4'
+VERSION = '2026.11.07.5'
 
 
 def pdf_guide(text):
