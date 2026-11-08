@@ -1,8 +1,8 @@
 # Repository governance proposal
 
-Owner approved this matrix, exact solo-owner protection payload and scanner/metadata-egress policies on 2026-11-08. Implementation and verification are tracked in [security and governance](security-and-governance.md). for owner approval
+Owner approved this matrix, exact solo-owner protection payload and scanner/metadata-egress policies on 2026-11-08. Implementation and verification are tracked in [security and governance](security-and-governance.md).
 
-Status: **candidate, not activated**. Prepared2026-11-08. No remote protection, visibility, access, review or release settings are changed by the proposal tool. The owner has approved public professional attribution using their own name/Gmail. That is not a secret finding and no historical identity rewrite is proposed. Credentials and unrelated private records remain excluded.
+Status: **owner approved; main protections applied and verified after green security/test prerequisites**. Prepared2026-11-08. No remote protection, visibility, access, review or release settings are changed by the proposal tool. The owner has approved public professional attribution using their own name/Gmail. That is not a secret finding and no historical identity rewrite is proposed. Credentials and unrelated private records remain excluded.
 
 ## Classify independent facts
 
@@ -48,6 +48,6 @@ The Gitleaks CLI is selected instead of blindly using `gitleaks-action`, whose l
 
 The pinned CLI passed a synthetic secret-detection and redaction test. The local-history scan covered10 commits on available refs plus reflogs and reported0 findings. It did not validate credentials, upload reports, enumerate missing remote refs, inspect issue text or prove every existing artifact is clean. Detailed reports and tool hashes stay in private `.workbench/security/`.
 
-Owner review requested: approve the classifications and proposed solo-main policy; confirm admin enforcement/break-glass behavior and explicit merge/release approval; approve the chosen scanner/metadata-egress rules. Native runtime recovery activation and real reboot tests remain separate operational approvals after their tested plan and [native compatibility review](native-recovery-compatibility.md).
+Owner approval recorded for the classifications, exact solo-main policy, admin enforcement/break-glass behavior and chosen scanner/metadata-egress rules. Main protections were applied and read back exactly after all four checks passed. Explicit merge/release authorization is still separate. Native runtime recovery activation and real reboot tests remain separate operational approvals after their tested plan and [native compatibility review](native-recovery-compatibility.md).
 
 Primary sources reviewed2026-11-08: [GitHub protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches), [rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets), [secret scanning](https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning), [push protection](https://docs.github.com/en/code-security/concepts/secret-security/push-protection), [Gitleaks8.30.1](https://github.com/gitleaks/gitleaks/releases/tag/v8.30.1), [pip-audit2.10.1](https://github.com/pypa/pip-audit/releases/tag/v2.10.1), [OSV2.7.0 offline behavior](https://github.com/google/osv-scanner/blob/v2.7.0/docs/offline-mode.md), and [separate Gitleaks action](https://github.com/gitleaks/gitleaks-action).

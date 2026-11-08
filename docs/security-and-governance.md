@@ -2,9 +2,13 @@
 
 The owner approved the [classification matrix and solo-owner policy](repository-governance-proposal.md) on 2026-11-08. Public professional name/email attribution is authorized; credentials and unrelated private records remain excluded. This approval applies to the documented scope, not new production actions, native recovery activation or public releases.
 
+Main branch protection was applied on 2026-11-08 after all four candidate check contexts passed. A fresh GitHub API readback matched every field of the approved payload. Administrators are included, review count is zero for the solo owner, and force-push/deletion are disabled. The implementation PR remains open; no merge, release, host installation or native recovery activation was performed.
+
 ## Automated checks
 
 The candidate adds exact GitHub check names `security-secrets` and `security-dependencies`, alongside `test (3.10)` and `test (3.12)`. Protection activation follows successful candidate checks and a fresh settings comparison. The approved payload is [versioned here](../config/codex-workbench-protection.proposed.json). The `.proposed` filename preserves the original reviewed artifact; actual remote settings must be read back rather than inferred from its presence.
+
+Local shallow clones are rejected rather than reported as complete history. Repository `.gitleaks.toml` or `.gitleaksignore` overrides fail pending a separately reviewed security-policy change.
 
 Secret checking uses the checksum-pinned Gitleaks CLI, full available Git history/reflogs, tracked outgoing export and built archives. It first checks synthetic detection and report redaction. Reports remain temporary and are not uploaded; failures withhold raw findings from CI output. Credential validity is never probed. Detection is heuristic, not proof that no secret exists. Public commit metadata is intentionally public professional attribution.
 
