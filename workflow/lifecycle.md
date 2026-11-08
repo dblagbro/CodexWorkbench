@@ -20,6 +20,12 @@ The placement workflow needs a useful directory name, not a branding exercise. P
 
 For incorporated components/assets as applicable, record source, version, license, modifications, and distribution obligations. Include fonts, datasets, model weights, and non-code assets when relevant. Propose a project license if distribution requires one. Keep private work private; publishing requires authorization. Escalate a specific credible consequential IP issue rather than promising legal clearance from a web search.
 
+## Publication privacy
+
+Before pushing to Git hosting, container registries, CI, release storage or other external destinations, establish destination ownership, visibility and the intended disclosure. Treat external repositories as potentially exposed. Sanitize secrets and unnecessary personal information, including names/emails, private inventories, topology, transcripts and correspondence. Review staged files and relevant history/author metadata, generated documents, archives, Docker build contexts/layers and CI output. Ignore rules are useful but do not remove already tracked content or historical disclosures. Use explicit, narrowly justified disclosure exceptions; private visibility or owner control alone is not a blanket exception. Credentials stay out of external publication.
+
+Consult private site policy for internal trust boundaries and local secret-storage permission. Store secret references in source and redacted examples in documentation. A future vault does not replace currently supported local storage until enrollment and scoped access are verified. If prior publication is found to contain sensitive data, report the affected surfaces without reproducing values; coordinate revocation/removal and any consequential history rewrite separately.
+
 ## First release and design
 
 Group features into required now, useful next, future, and excluded. Complete important user workflows before expanding the roadmap. Consider onboarding, authorization, administration, errors, progress/cancellation, import/export, recovery, notifications, accessibility, and upgrades only where relevant. Resolve expensive architectural choices before dependent implementation; avoid speculative infrastructure.
@@ -30,7 +36,7 @@ Maintain enough design detail for implementation and operation: responsibilities
 
 Use the configured project root, preserving requested name case and existing locations. Before storage-dependent work, inspect mount source/type, permissions, relevant locking semantics, free space, and suitability for the workload. Missing mounts must not silently redirect existing project writes to local underlying directories.
 
-Place live databases and sensitive runtime state on suitable storage with restrictive permissions; verify support before using shared mounts. Separate source, deployment config, runtime data, logs, artifacts, temporary files, and backups without creating empty directories. Exclude secrets, databases, caches, backups, large outputs, and transcripts from Git.
+Place live databases and sensitive runtime state on suitable storage with restrictive permissions; verify support before using shared mounts. Respect explicit owner/site permission to store local secret files on secure shared storage, while keeping them outside tracked source and publication/build contexts. This does not waive database filesystem checks or backup encryption requirements. Separate source, deployment config, runtime data, logs, artifacts, temporary files, and backups without creating empty directories. Exclude secrets, databases, caches, backups, large outputs, and transcripts from Git.
 
 Use application-consistent backups, checksums, retention, and restore verification. Encrypt sensitive backups before writing them to a share, with recovery keys protected separately. Establish independent failure domains where recovery requires them. Do not equate a live directory mirror with a validated backup. Use managed safety copies, with retention, rather than accumulating old files in source directories.
 

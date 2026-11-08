@@ -13,3 +13,5 @@ Use isolated tests and fake native executables. No test should make an inference
 Delegate only when current user or task instructions authorize it, with distinct ownership and coordinated integration. An approval from another installation or example does not grant current authority.
 
 For work in the owner environment, read `/mnt/s/code/.site-policy.md` before deployment or network-exposure decisions when available. This private file is not distributed with the public repository; other installations use their own configured shared-root site policy.
+
+Before publishing, follow the baseline/lifecycle publication-privacy rules. Review Git metadata/history and built artifacts as well as staged content. Keep personal information and credentials out of external destinations except narrowly justified, explicitly authorized personal-information disclosures. Owner-approved internal local secret storage does not authorize publication.

@@ -64,3 +64,9 @@ Place non-secret, owner-specific infrastructure rules in `.site-policy.md` at th
 Portable defaults require respecting designated ingress gateways and host roles. Workstations permit Docker testing/utilities; application-server workloads need a dedicated or explicitly permitted Docker-server role. Normal deployments must not add public inbound workstation PAT. Authorized temporary test exposure requires explicit lifetime, firewall/PAT cleanup and verification. Cloud architectures are evaluated separately. Read-only discovery must verify current routing and TLS behavior before changes. Installing this guidance does not change network services or grant production authority.
 
 Existing sessions adopt changed baseline text through the policy upgrade/relevance-review workflow. Private site policy is read at the point of a relevant deployment decision, rather than treated as a historical service-health snapshot.
+
+## Publication and storage policy
+
+The baseline now requires external-publication sanitization of source, Git metadata/history, CI output, release artifacts and container build contexts/layers. External hosting is treated as potentially exposed; private visibility or ownership does not by itself approve sensitive disclosure. Record any explicit necessary personal-information exception. Credentials are excluded from external publication.
+
+Owner-specific internal trust boundaries and permitted secret-storage roots belong in the private shared-root `.site-policy.md`, not public documentation. Allowed local secret files stay outside tracked source and publication contexts with supported access restrictions. The future vault remains unconfigured. Existing sessions adopt baseline changes through policy upgrades; a live user instruction applies immediately without restarting the agent or preventing it from maintaining the policy source.
