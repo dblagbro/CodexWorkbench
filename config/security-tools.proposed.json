@@ -1,0 +1,25 @@
+{
+  "status": "proposed_tool_choices_not_remote_activation",
+  "gitleaks": {
+    "tool": "gitleaks",
+    "version": "8.30.1",
+    "source": "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz",
+    "archive_sha256": "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb",
+    "binary_sha256": "88f91962aa2f93ac6ab281d553b9e125f5197bbbce38f9f2437f7299c32e5509",
+    "license": "MIT",
+    "reports": "private_redacted_no_upload",
+    "credential_validation": false
+  },
+  "pip_audit": {
+    "version": "2.10.1",
+    "license": "Apache-2.0",
+    "mode": "reviewed_resolved_pins_no_resolution_no_auto_fix",
+    "private_inventory_egress": "requires_explicit_approval"
+  },
+  "osv_scanner": {
+    "version": "2.7.0",
+    "license": "Apache-2.0",
+    "mode": "full_offline_with_approved_database_when_needed",
+    "installed": false
+  }
+}

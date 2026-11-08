@@ -77,3 +77,7 @@ This repository distributes local CLI integration. A future plugin can package r
 - [Quality and delivery: enforced checks versus guidance](docs/quality-and-delivery.md)
 
 New named code projects receive a small `WORKBENCH.md` entry point, native loaders and on-demand discipline references. Existing projects enroll explicitly through `codex --code --handoff --project . init`; add `--apply` after preview. One-offs keep their simple workflow. See [modular-workflow research and adoption decisions](docs/agent-workflow-research.md).
+
+## Governance and recovery candidate
+
+The current feature branch prepares [repository classifications/settings for owner approval](docs/repository-governance-proposal.md) and a [multi-host simulated test plan](docs/p1-test-plan.md). [Results and boundaries](docs/p1-results.md) distinguish actual SSH/NFS/process tests from injected API/boot/model fixtures. `workflow/repo_policy.py` only proposes policy; `workflow/recovery.py` only journals/plans and never starts a provider or replays a command. No live protection/boot-service activation is included. The previously requested attribution cleanup is closed: the owner approves their public professional name/email; credentials remain excluded.

@@ -9,7 +9,7 @@ import tarfile
 import textwrap
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '2026.11.07.6'
+VERSION = '2026.11.08.1-rc1'
 
 
 def pdf_guide(text):
@@ -61,8 +61,10 @@ def main():
         files[str(path.relative_to(ROOT))] = path.read_bytes()
     for path in sorted((ROOT / 'tests').glob('*.py')):
         files[str(path.relative_to(ROOT))] = path.read_bytes()
-    for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'unattended-and-context.md', 'shared-project-handoff.md', 'quality-and-delivery.md', 'agent-workflow-research.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
+    for name in ['commands-and-installation.md', 'guidance-coverage.md', 'code-mode.md', 'cross-host-resume.md', 'backlog.md', 'policy-upgrades.md', 'unified-providers.md', 'implementation-status.md', 'unattended-and-context.md', 'shared-project-handoff.md', 'quality-and-delivery.md', 'agent-workflow-research.md', 'repository-governance-proposal.md', 'p1-test-plan.md', 'p1-results.md', 'native-recovery-compatibility.md', 'one-page-guide.md', 'Codex-Workbench-One-Page.pdf']:
         files['docs/' + name] = (ROOT / 'docs' / name).read_bytes()
+    for name in ('repository-facts.example.json','codex-workbench-protection.proposed.json','security-tools.proposed.json'):
+        files['config/' + name] = (ROOT / 'config' / name).read_bytes()
     files['LICENSE'] = (ROOT / 'LICENSE').read_bytes()
     files['requirements-claude.txt'] = (ROOT / 'requirements-claude.txt').read_bytes()
     files['README.md'] = ('# Codex Workbench ' + VERSION + '\n\n'

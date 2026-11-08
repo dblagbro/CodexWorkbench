@@ -1,0 +1,8 @@
+{
+  "hosting": "external",
+  "authority": "owner",
+  "visibility": "public",
+  "sensitivity": "publishable",
+  "criticality": "development",
+  "team": "solo"
+}

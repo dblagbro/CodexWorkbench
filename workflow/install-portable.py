@@ -11,7 +11,7 @@ import os
 import subprocess
 
 FILES = ['code-workflow.py', 'code-workflow-instructions.txt', 'code-shell.bash',
-         'install-portable.py', 'code-baseline.txt', 'lifecycle.md', 'remote-control.py', 'resume.py', 'coordinator.py', 'policy.py', 'session_picker.py', 'claude.py', 'claude-shell.bash', 'handoff.py', 'project-entry.md']
+         'install-portable.py', 'code-baseline.txt', 'lifecycle.md', 'remote-control.py', 'resume.py', 'coordinator.py', 'policy.py', 'session_picker.py', 'claude.py', 'claude-shell.bash', 'handoff.py', 'project-entry.md', 'repo_policy.py', 'message_contract.py', 'recovery.py']
 
 
 def payload(source):

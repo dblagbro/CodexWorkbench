@@ -31,3 +31,7 @@ Remote-control readiness verifies native enablement and daemon availability, not
 - Public plugin/marketplace submission is separate from publishing the GitHub add-on.
 
 See the [command guide](commands-and-installation.md), [upgrade guide](policy-upgrades.md), and [provider design](unified-providers.md). Local operational inventories, session IDs and correspondence are intentionally excluded.
+
+## Candidate branch: governance and recovery
+
+The feature/repository-governance-recovery branch contains proposal-only repository classifications/settings, typed offer/interpret/correct/review/ack contracts, a verified-local journal/session registry and a guarded boot planner. Tests include three-host SSH/NFS/process fixtures and injected API/boot faults. No live protection, provider login/API turn, boot supervisor or real outage/reboot is activated. See repository-governance-proposal.md, p1-test-plan.md, p1-results.md and native-recovery-compatibility.md. Public owner-approved name/email attribution is allowed; the prior historical identity-cleanup question is closed without a history rewrite.

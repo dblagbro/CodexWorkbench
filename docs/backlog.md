@@ -8,7 +8,7 @@ Track open/closed state durably, distinguish an intentionally closed session fro
 
 Acceptance: simulated abrupt termination and reboot recovery tests preserve IDs/history, avoid duplicate ownership, retain approval boundaries, and allow local/remote attachment. Real reboot validation must be planned separately so active work is not interrupted. Restoring a conversation is different from automatically resuming every previously running external process.
 
-Status: backlog, not implemented. Remote-control supervision is implemented; restoring the previous open session set remains pending.
+Status: custom desired-open registry/journal and guarded restore planning are candidate-tested; a live native restoration supervisor remains pending. Native-managed daemon recovery can itself continue work and is not an idle-only guarantee; see native-recovery-compatibility.md. Remote-control supervision is implemented, but is not proof of safe full reboot restoration.
 
 ## Cooperative parallel teams and communication
 
@@ -17,3 +17,9 @@ First phase: one editor per shared working directory, concurrent readers, partic
 ## Remaining delivery gates
 
 Explicitly evaluate repository branch protection/review policy, comprehensive secret/dependency-vulnerability scanning and automated release/deployment promotion after current local/CI verification. Do not call these enforced until configured and verified. Browser UI QA becomes applicable when a real product UI exists. Market/open-source reassessment is milestone/trigger-driven; no calendar research worker is installed by writing guidance.
+
+## P1 candidate: governance and recovery verification
+
+Owner approved public professional name/Gmail attribution; the historical identity-cleanup item is closed without history rewrite. Actual credential detection remains required.
+
+On feature/repository-governance-recovery: prepare explicit repository classifications and proposed settings for owner review; run both-direction provider-labelled protocol cases over three real SSH hosts, including correction/ack, stale evidence and cooperative ownership; test local journal, share/API fault handling and reboot registry with synthetic data. See governance proposal, test plan and results. No live repository protections, provider-account switch, boot supervisor, actual outage/reboot or production service change is activated by the candidate. Next after approval: real security jobs/settings deployment, then a separately approved nonproduction native idle-restore pilot.
