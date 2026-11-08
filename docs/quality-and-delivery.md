@@ -28,8 +28,8 @@ Predictions and trend scenarios are assumptions, not evidence of demand or guara
 
 ## Explicit remaining gaps
 
-- Branch protection, required external code reviews, merge/release approval policies and deployment promotion are not configured/verified by the workflow file.
-- Comprehensive secret scanning, dependency vulnerability scanning and automatic security remediation require a selected, reviewed tool/configuration and measured false-positive/coverage limits.
+- The owner-approved branch/scanner policy and its activation procedure are in [security and governance](security-and-governance.md). Required checks do not by themselves grant merge/release or deployment authority.
+- The candidate adds pinned secret scanning and reviewed dependency-snapshot audits. Coverage limits and regeneration commands are documented; automatic security remediation remains disabled.
 - Cross-account live handoff, multi-OS-user ACL provisioning, cross-host NFS/partition behavior and app pairing require environment-specific validation.
 - Parallel fork/worktree team workflow and real-time communication are roadmap features.
 

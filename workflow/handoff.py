@@ -215,7 +215,7 @@ def initialize(project, apply=False, with_gemini=False):
             raise HandoffError('Release editor ownership before refreshing shared rules.')
         revision, manifest_hash = prepare_policy(folder)
         if state is None:
-            state = {'schema': 1, 'project': str(project), 'revision': 0, 'policy_revision': revision, 'policy_manifest_sha256': manifest_hash,
+            state = {'schema': 1, 'project_id': str(uuid.uuid4()), 'project': str(project), 'revision': 0, 'policy_revision': revision, 'policy_manifest_sha256': manifest_hash,
                      'owner': None, 'participants': {}, 'events': [], 'checkpoint': None,
                      'recovery_required': False}
             event(state, 'initialized')
@@ -223,6 +223,9 @@ def initialize(project, apply=False, with_gemini=False):
             state['policy_revision'] = revision
             state['policy_manifest_sha256'] = manifest_hash
             event(state, 'policy_updated')
+        if not state.get('project_id'):
+            state['project_id'] = str(uuid.uuid4())
+            event(state, 'project_identity_assigned')
         for name in changes:
             path = project / name
             if path.is_symlink() or (path.read_bytes() if path.exists() else None) != originals[name]:

@@ -24,7 +24,7 @@ PRIVATE_PARTS = {'.workbench', '.codex', '.claude', '.git', '.venv', '__pycache_
 CLI_FILES = (
     'workflow/code-workflow.py', 'workflow/install-portable.py',
     'workflow/remote-control.py', 'workflow/resume.py', 'workflow/coordinator.py',
-    'workflow/policy.py', 'workflow/claude.py', 'workflow/handoff.py',
+    'workflow/policy.py', 'workflow/claude.py', 'workflow/handoff.py', 'workflow/repo_policy.py', 'workflow/recovery.py',
     'skills/project-bootstrap/scripts/inventory.py',
     'skills/project-bootstrap/scripts/unattended-plan.py',
 )
