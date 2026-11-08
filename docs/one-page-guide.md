@@ -21,9 +21,9 @@ SSH access keeps execution/state on the selected host. Shared project files alon
 do not migrate conversation history, credentials, memory or running processes.
 
 UPGRADE EXISTING CODE-MODE SESSIONS
-  codex --code --upgrade               Choose an outdated session; preview policy
-  codex --code --upgrade --apply --notify
-                                       Choose, attach and queue a relevance review
+  codex --code --upgrade               Choose, apply and queue a relevance review
+  codex --code --upgrade --preview
+                                       Choose a session for a read-only preview
 In the menu: /words searches, a number or exact ID selects, q cancels.
 For scripts: add --thread THREAD_UUID. Add --host HOST to target another host.
   codex --code --upgrade --thread THREAD_UUID --check

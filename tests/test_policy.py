@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import os
+import pty
 from pathlib import Path
 import subprocess
 import sys
@@ -100,6 +101,42 @@ else: raise SystemExit(2)
         result = self.run_policy('--apply', target=False)
         self.assertEqual(result.returncode, 2)
         self.assertEqual(json.loads(result.stdout)['sessions'][0]['id'], THREAD)
+        self.assertFalse((self.folder / 'workbench').exists())
+
+    def interactive_upgrade(self, *args, selection='1'):
+        master, slave = pty.openpty()
+        try:
+            os.write(master, (selection + '\n').encode())
+            return subprocess.run([sys.executable, str(self.script), *args], env=self.env,
+                                  cwd=ROOT, stdin=slave, stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE, text=True, timeout=20)
+        finally:
+            os.close(master)
+            os.close(slave)
+
+    def test_interactive_selection_applies_and_notifies_by_default(self):
+        result = self.interactive_upgrade()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.receipt()['notification_status'], 'queued')
+        self.assertEqual(self.receipt()['adoption_status'], 'pending')
+        self.assertIn('Selection applies', result.stdout)
+
+    def test_interactive_preview_and_check_do_not_mutate(self):
+        for flag in ('--preview', '--check', '--diff'):
+            result = self.interactive_upgrade(flag)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertFalse((self.folder / 'workbench').exists())
+            self.assertFalse((self.home / 'queued.json').exists())
+
+    def test_interactive_no_notify_attaches_without_queue(self):
+        result = self.interactive_upgrade('--no-notify')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.receipt()['adoption_status'], 'pending')
+        self.assertFalse((self.home / 'queued.json').exists())
+
+    def test_interactive_cancel_never_applies(self):
+        result = self.interactive_upgrade(selection='q')
+        self.assertEqual(result.returncode, 0, result.stderr)
         self.assertFalse((self.folder / 'workbench').exists())
 
     def test_acknowledged_current_sessions_are_hidden_unless_all_requested(self):

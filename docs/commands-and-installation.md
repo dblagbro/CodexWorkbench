@@ -22,7 +22,7 @@ If the native title tool is unavailable, the state stays pending and the agent e
 
 ## Continue the original session through SSH
 
-To bring an already-running code session up to the installed rules, use `codex --code --upgrade --thread THREAD_UUID` to preview, then add `--apply --notify` to attach and request an in-session relevance review. See [policy upgrades](policy-upgrades.md) for acknowledgement, rollback, and remote hosts. This preserves the existing conversation rather than starting a new one.
+For an interactive upgrade, run `codex --code --upgrade` and select the session: this applies and queues its relevance review. Add `--preview` for read-only selection. For an explicit thread, use `codex --code --upgrade --thread THREAD_UUID` to preview, then add `--apply --notify` to attach and request an in-session relevance review. See [policy upgrades](policy-upgrades.md) for acknowledgement, rollback, and remote hosts. This preserves the existing conversation rather than starting a new one.
 
 From workstation, access dev-host's sessions:
 

@@ -32,10 +32,10 @@ cx --one-off "Try a small experiment"
 codex -cr
 codex -cr --host dev-host
 codex --code --upgrade
-codex --code --upgrade --apply --notify
+codex --code --upgrade --preview
 ```
 
-The upgrade chooser lists sessions behind the installed policy or awaiting adoption. Search with `/words`, select a number or exact native ID, and cancel with `q`. Explicit `--thread` and `--session` selectors remain available for scripts. Attachment, notification and agent acknowledgement are distinct states.
+Selecting a session applies and queues a relevance review by default; `--preview` is read-only. The upgrade chooser lists sessions behind the installed policy or awaiting adoption. Search with `/words`, select a number or exact native ID, and cancel with `q`. Explicit `--thread` and `--session` selectors remain available for scripts. Attachment, notification and agent acknowledgement are distinct states.
 
 After optional Claude setup:
 

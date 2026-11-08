@@ -401,6 +401,8 @@ def main():
     parser.add_argument('--list', action='store_true', help='List upgrade candidates without selecting or modifying them.')
     parser.add_argument('--all', action='store_true', help='Also show sessions already current and acknowledged.')
     parser.add_argument('--apply', action='store_true')
+    parser.add_argument('--preview', action='store_true', help='Preview only, including when choosing interactively.')
+    parser.add_argument('--no-notify', action='store_true', help='Attach without queuing a review message.')
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--diff', action='store_true')
     parser.add_argument('--notify', action='store_true')
@@ -425,6 +427,10 @@ def main():
         command = 'exec env PATH="$HOME/.local/bin:$PATH" python3 "$HOME/.local/share/codex-code/policy.py" ' + shlex.join(forward)
         interactive = not (args.session or args.project or args.thread or args.list) and sys.stdin.isatty()
         os.execvp('ssh', ['ssh', '-t' if interactive else '-T', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=8', '--', args.host, command])
+    if args.preview and (args.apply or args.notify or args.ack or args.rollback):
+        parser.error('--preview is read-only')
+    if args.no_notify and args.notify:
+        parser.error('--notify and --no-notify cannot be combined')
     if args.notify and not args.apply:
         parser.error('--notify requires --apply; preview never sends messages')
     if args.ack and (args.apply or args.rollback or args.notify or args.diff):
@@ -446,6 +452,15 @@ def main():
                 return 0
             if candidates['truncated']:
                 print('Native metadata reached its page limit; the picker may be incomplete.', file=sys.stderr)
+            automatic_upgrade = not (args.preview or args.check or args.diff)
+            if automatic_upgrade:
+                print('Selection applies the policy; adoption requires acknowledgement.')
+                if (args.engine or 'codex') == 'codex' and not args.no_notify:
+                    print('A relevance-review message will be queued to the selected Codex thread.')
+                if args.engine == 'claude':
+                    print('Claude has no external queue; use the returned review prompt in that chat.')
+            else:
+                print('Preview only; selection will not change the session.')
             selected = runpy.run_path(str(HERE / 'session_picker.py'))['choose'](candidates['sessions'])
             if selected is None:
                 print('Cancelled; no session changed.')
@@ -453,6 +468,9 @@ def main():
             if selected['status'] == 'blocked':
                 raise PolicyError(selected['reason'])
             args.thread = selected['id']
+            if automatic_upgrade:
+                args.apply = True
+                args.notify = (args.engine or 'codex') == 'codex' and not args.no_notify
         folder, state = resolve_session(args.session, args.project, args.thread, args.engine)
         data = sources()
         revision, hashes = fingerprint(data)

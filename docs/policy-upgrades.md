@@ -83,3 +83,9 @@ A real deployment had two sessions pointing at the same project. Native-ID selec
 57 tests passed on workstation and dev-host, including ambiguity, idempotency, preservation, immutable-snapshot drift, notification/adoption separation, stale acknowledgements, rollback, redirected paths and interrupted/concurrent writes.
 
 Official references: [AGENTS.md loading](https://learn.chatgpt.com/docs/agent-configuration/agents-md) and [native queue](https://learn.chatgpt.com/docs/developer-commands). Editing files alone is not presented as hot-reloading active context.
+
+## Interactive defaults
+
+Run `codex --code --upgrade` and choose a session to attach the installed policy and queue a relevance-review message by default. The menu states this before selection. The message asks the agent to preserve its task, read project rules, apply only relevant changes and acknowledge the revision; queue success is not adoption. Cancel with `q` without changes.
+
+Use `--preview` (or `--check`/`--diff`) for read-only interactive selection. Use `--no-notify` to attach without queuing. Explicit `--thread`, `--session` and `--project` calls keep their preview default for scripts; add `--apply --notify` there. Noninteractive calls never choose an arbitrary session. Claude selection attaches by default but returns a prompt for manual review because no external queue is configured.

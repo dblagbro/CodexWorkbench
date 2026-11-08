@@ -12,7 +12,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
 endobj
 5 0 obj
-<< /Length 3965 >>
+<< /Length 3955 >>
 stream
 BT
 /F1 8 Tf
@@ -64,11 +64,11 @@ T*
 T*
 (UPGRADE EXISTING CODE-MODE SESSIONS) Tj
 T*
-(  codex --code --upgrade               Choose an outdated session; preview policy) Tj
+(  codex --code --upgrade               Choose, apply and queue a relevance review) Tj
 T*
-(  codex --code --upgrade --apply --notify) Tj
+(  codex --code --upgrade --preview) Tj
 T*
-(                                       Choose, attach and queue a relevance review) Tj
+(                                       Choose a session for a read-only preview) Tj
 T*
 (In the menu: /words searches, a number or exact ID selects, q cancels.) Tj
 T*
@@ -148,5 +148,5 @@ xref
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-4326
+4316
 %%EOF
