@@ -34,3 +34,5 @@ Today, use shared project handoff documents with a new code-mode session on anot
 Shared Codex state is another architecture, but locking, daemon behavior, authentication, and mount semantics need separate design and verification. Do not point live Codex homes at shared storage simply because source is shared.
 
 Sources: [CLI resume](https://learn.chatgpt.com/docs/cli/reference), [transcript locations](https://learn.chatgpt.com/docs/reference/troubleshooting), and [NFS deployment guidance](https://learn.chatgpt.com/docs/environments/network-file-systems).
+
+Workbench resume shortcuts pass the supported per-invocation setting `tui.resume_cwd="session"`, so a saved working directory is used without the home-versus-session prompt. This includes SSH resume on the owning host. Explicit `--cd` still takes precedence. Plain `codex resume` and global Codex configuration are unchanged. Reload `code-shell.bash` in an already-open terminal after installing this launcher update; no session-policy upgrade is needed for this launcher behavior. See [Codex resume documentation](https://learn.chatgpt.com/docs/developer-commands).

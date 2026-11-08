@@ -2,6 +2,7 @@ import argparse
 import importlib.util
 import json
 import os
+import shlex
 from pathlib import Path
 import subprocess
 import sys
@@ -27,8 +28,8 @@ class FakeClient:
 
 class ResumeTests(unittest.TestCase):
     def test_resume_preserves_exact_native_id_and_adds_no_baseline(self):
-        self.assertEqual(resume.resume_command(THREAD_ID), ['codex', 'resume', '--all', THREAD_ID])
-        self.assertEqual(resume.resume_command(), ['codex', 'resume', '--all'])
+        self.assertEqual(resume.resume_command(THREAD_ID), ['codex', 'resume', '--all', '-c', 'tui.resume_cwd="session"', THREAD_ID])
+        self.assertEqual(resume.resume_command(), ['codex', 'resume', '--all', '-c', 'tui.resume_cwd="session"'])
 
     def test_ssh_host_validation_rejects_options_and_shell_syntax(self):
         for value in ['-oProxyCommand=bad', 'host;bad', 'host name', 'host\nother', '$(bad)', '']:
@@ -39,7 +40,7 @@ class ResumeTests(unittest.TestCase):
     def test_ssh_resume_targets_original_host_with_safe_native_arguments(self):
         command = resume.resume_command(THREAD_ID, 'dev-host')
         self.assertEqual(command[:2], ['ssh', '-t'])
-        self.assertEqual(command[-2:], ['dev-host', 'exec env PATH="$HOME/.local/bin:$PATH" codex resume --all ' + THREAD_ID])
+        self.assertEqual(command[-2:], ['dev-host', 'exec env PATH="$HOME/.local/bin:$PATH" ' + shlex.join(resume.resume_command(THREAD_ID))])
         self.assertIn('--', command)
 
     def test_non_uuid_does_not_invent_or_fork_thread(self):
@@ -56,7 +57,7 @@ class ResumeTests(unittest.TestCase):
             native = subprocess.run([sys.executable, str(ROOT / 'workflow/resume.py'), 'resume', THREAD_ID],
                                     env=env, capture_output=True, text=True, timeout=5)
             self.assertEqual(native.returncode, 0, native.stderr)
-            self.assertEqual(json.loads(native.stdout), ['resume', '--all', THREAD_ID])
+            self.assertEqual(json.loads(native.stdout), ['resume', '--all', '-c', 'tui.resume_cwd="session"', THREAD_ID])
             remote = subprocess.run([sys.executable, str(ROOT / 'workflow/resume.py'), '--host', 'dev-host', 'resume', THREAD_ID],
                                     env=env, capture_output=True, text=True, timeout=5)
             self.assertEqual(remote.returncode, 0, remote.stderr)

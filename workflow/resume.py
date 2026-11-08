@@ -173,7 +173,7 @@ def list_threads(client, limit=100, max_pages=10):
 
 
 def resume_command(session=None, host=None):
-    command = ['codex', 'resume', '--all']
+    command = ['codex', 'resume', '--all', '-c', 'tui.resume_cwd="session"']
     if session:
         thread_id(session)
         command.append(session)

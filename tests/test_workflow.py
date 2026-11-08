@@ -114,24 +114,24 @@ else:
         self.assertTrue((snapshot / 'skills/project-bootstrap/scripts/inventory.py').is_file())
         self.assertNotIn('chrome-devtools-mcp@latest', ' '.join(args))
 
-    def test_resume_shortcuts_show_all_locations_without_code_overrides(self):
+    def test_resume_shortcuts_use_saved_directory_without_baseline_overrides(self):
         self.assertEqual(self.setup_install('--apply').returncode, 0)
         for shortcut in ['-cr', '--coderesume']:
             with self.subTest(shortcut=shortcut):
                 result = self.shell(shortcut, 'session with spaces', '')
                 self.assertEqual(result.returncode, 0, result.stderr)
                 self.assertEqual(json.loads(self.capture.read_text()),
-                                 ['resume', '--all', 'session with spaces', ''])
+                                 ['resume', '--all', '-c', 'tui.resume_cwd="session"', 'session with spaces', ''])
                 self.assertEqual(list((self.home / '.local/share/codex-work/sessions').iterdir()), [])
         shell = self.home / '.local/share/codex-code/code-shell.bash'
         result = subprocess.run(['bash', '--noprofile', '--norc', '-c',
                                  'source "$1"; cxr', 'test', str(shell)],
                                 env=self.env, cwd=self.home, capture_output=True, text=True, timeout=20)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual(json.loads(self.capture.read_text()), ['resume', '--all'])
+        self.assertEqual(json.loads(self.capture.read_text()), ['resume', '--all', '-c', 'tui.resume_cwd="session"'])
         result = self.shell('--code', '--resume')
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual(json.loads(self.capture.read_text()), ['resume', '--all'])
+        self.assertEqual(json.loads(self.capture.read_text()), ['resume', '--all', '-c', 'tui.resume_cwd="session"'])
 
     def test_one_off_placement_still_works(self):
         self.assertEqual(self.setup_install('--apply').returncode, 0)

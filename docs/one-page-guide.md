@@ -17,7 +17,8 @@ FIND / RESUME SESSIONS
   cxr --last                           Latest native session across directories
   codex -cr --host HOST                Picker on an SSH-accessible host
   codex -cr --host HOST THREAD_UUID    Continue that original native thread
-SSH access keeps execution/state on the selected host. Shared project files alone
+Workbench resume uses the saved session directory. SSH keeps work on that host.
+Shared project files alone
 do not migrate conversation history, credentials, memory or running processes.
 
 UPGRADE EXISTING CODE-MODE SESSIONS

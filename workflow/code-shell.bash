@@ -28,7 +28,7 @@ codex() {
             python3 "$_CODEX_CODE_HOME/resume.py" --host "$resume_host" resume "$@"
             return $?
         fi
-        command codex resume --all "$@"
+        command codex resume --all -c 'tui.resume_cwd="session"' "$@"
     else
         command codex "$@"
     fi
