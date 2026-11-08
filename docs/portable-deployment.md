@@ -56,3 +56,11 @@ Release upgrades should update owned code and templates while preserving host ma
 - [Build skills](https://learn.chatgpt.com/docs/build-skills): supported skill discovery and distribution locations.
 - [Troubleshooting](https://learn.chatgpt.com/docs/reference/troubleshooting): transcript and archive locations.
 - [NFS home directories](https://learn.chatgpt.com/docs/environments/network-file-systems): filesystem and SQLite considerations.
+
+## Private site deployment defaults
+
+Place non-secret, owner-specific infrastructure rules in `.site-policy.md` at the configured shared project root. Code-mode guidance requires reading it for deployment/network decisions when present. Keep named topology out of public source; this file is not included in portable archives or automatically copied to unrelated installations. Hosts sharing that root see the same file. On a new independent installation, provision the site file separately through an authorized private channel.
+
+Portable defaults require respecting designated ingress gateways and host roles. Workstations permit Docker testing/utilities; application-server workloads need a dedicated or explicitly permitted Docker-server role. Normal deployments must not add public inbound workstation PAT. Authorized temporary test exposure requires explicit lifetime, firewall/PAT cleanup and verification. Cloud architectures are evaluated separately. Read-only discovery must verify current routing and TLS behavior before changes. Installing this guidance does not change network services or grant production authority.
+
+Existing sessions adopt changed baseline text through the policy upgrade/relevance-review workflow. Private site policy is read at the point of a relevant deployment decision, rather than treated as a historical service-health snapshot.

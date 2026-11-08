@@ -11,3 +11,5 @@ Use installed-version evidence before adding flags. Do not infer equivalent capa
 Use isolated tests and fake native executables. No test should make an inference request or alter a real service without explicit task authorization. Keep generated print guides to one page. Keep public docs portable and exclude host/session inventories and correspondence.
 
 Delegate only when current user or task instructions authorize it, with distinct ownership and coordinated integration. An approval from another installation or example does not grant current authority.
+
+For work in the owner environment, read `/mnt/s/code/.site-policy.md` before deployment or network-exposure decisions when available. This private file is not distributed with the public repository; other installations use their own configured shared-root site policy.
