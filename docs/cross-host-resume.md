@@ -14,6 +14,8 @@ The message means the native client could not obtain exclusive writer access. It
 
 Command approvals are a separate concern. The native `/status` and `/permissions` interfaces report and select session settings; an allow rule may cover only the exact command or prefix shown. If a session reports Full Access but still presents command approvals, record the client version, reported mode and a sanitized example, and investigate the effective native policy. Changing the sandbox or approval policy has separate effects and must remain the user's choice. Workbench does not silently alter either setting or claim that restarting fixes an upstream mismatch.
 
+Related upstream reports describe an [active writer remaining after interruption](https://github.com/openai/codex/issues/43374) and [approval requests in existing Full Access sessions](https://github.com/openai/codex/issues/21839). These reports involve other versions or environments; similar symptoms alone do not establish a shared cause or a fix here.
+
 The requested shortcuts `codex -cr`, `codex --coderesume`, and `cxr` map to `codex resume --all`. They add no Workbench baseline, writable roots, sandbox, network, or browser overrides. Reload the wrapper in already-open shells after installation.
 
 ## Current shared-project behavior
