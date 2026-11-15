@@ -1,6 +1,22 @@
 # Local extension: `codex --code [--one-off] ["initial task"]`.
 # All ordinary Codex invocations retain their original behavior.
 _CODEX_CODE_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+_codex_workbench_stopped_job_hint() {
+    # A stopped local job is a hint, not proof of conversation ownership.
+    [[ $- == *i* && -t 0 && -d /proc ]] || return 0
+    local stopped pid comm
+    stopped="$(builtin jobs -ps 2>/dev/null)" || return 0
+    while IFS= read -r pid; do
+        [[ "$pid" =~ ^[1-9][0-9]*$ && -r "/proc/$pid/comm" ]] || continue
+        IFS= read -r comm < "/proc/$pid/comm" || continue
+        if [[ "$comm" == codex ]]; then
+            printf '%s\n' 'A stopped Codex job is listed in this shell. Run jobs -l; if it is the session you want, use fg %<job-number>.' >&2
+            printf '%s\n' 'This hint does not establish who owns a conversation; the owner may be elsewhere.' >&2
+            break
+        fi
+    done <<< "$stopped"
+    return 0
+}
 _codex_workbench_dispatch() {
     if [[ "${1-}" == --code ]]; then
         shift
@@ -33,7 +49,15 @@ _codex_workbench_dispatch() {
             python3 "$_CODEX_CODE_HOME/resume.py" --host "$resume_host" resume "$@"
             return $?
         fi
-        command codex resume --all -c 'tui.resume_cwd="session"' "$@"
+        _codex_workbench_stopped_job_hint
+        local resume_status
+        if command codex resume --all -c 'tui.resume_cwd="session"' "$@"; then
+            resume_status=0
+        else
+            resume_status=$?
+        fi
+        _codex_workbench_stopped_job_hint
+        return "$resume_status"
     else
         command codex "$@"
     fi

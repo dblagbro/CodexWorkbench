@@ -4,6 +4,18 @@ Current implementation: local native-ID resume and SSH access to the original st
 
 `codex resume` keeps native current-directory filtering. `codex resume --all` shows sessions beyond that directory in the active user's configured Codex state store. It does not enumerate other OS users' histories or automatically discover histories on other machines.
 
+## When a conversation appears open elsewhere
+
+The message means the native client could not obtain exclusive writer access. It does not identify the owner or prove the lock is stale. The owner may be another terminal, an app server, a suspended shell job, or an unavailable process; observation of one terminal cannot rule out the others.
+
+- Retry the native attachment after the original client has closed. If a disconnected turn is still running, use the native `codex agents` interface to identify and stop that specific turn only when the interruption is intended. Disconnecting a terminal does not necessarily stop its work.
+- In the original interactive Bash shell, `jobs -l` lists that shell's jobs. If the intended Codex job is stopped, `fg %<job-number>` returns to that job. Workbench's local `-cr` shortcut reports a stopped Codex job in that shell as a hint. It cannot establish conversation ownership and does not resume or signal a job automatically.
+- Do not delete a lock, kill an unidentified process, fork the conversation to evade a writer, or repeat a previously pending action just because attachment failed. After an interrupted Git operation, inspect the current status and history before deciding what to do next.
+
+Command approvals are a separate concern. The native `/status` and `/permissions` interfaces report and select session settings; an allow rule may cover only the exact command or prefix shown. If a session reports Full Access but still presents command approvals, record the client version, reported mode and a sanitized example, and investigate the effective native policy. Changing the sandbox or approval policy has separate effects and must remain the user's choice. Workbench does not silently alter either setting or claim that restarting fixes an upstream mismatch.
+
+Related upstream reports describe an [active writer remaining after interruption](https://github.com/openai/codex/issues/43374) and [approval requests in existing Full Access sessions](https://github.com/openai/codex/issues/21839). These reports involve other versions or environments; similar symptoms alone do not establish a shared cause or a fix here.
+
 The requested shortcuts `codex -cr`, `codex --coderesume`, and `cxr` map to `codex resume --all`. They add no Workbench baseline, writable roots, sandbox, network, or browser overrides. Reload the wrapper in already-open shells after installation.
 
 ## Current shared-project behavior
